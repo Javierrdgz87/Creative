@@ -1,0 +1,82 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : localhost
+Source Server Version : 50719
+Source Host           : localhost:3306
+Source Database       : dbtasks
+
+Target Server Type    : MYSQL
+Target Server Version : 50719
+File Encoding         : 65001
+
+Date: 2018-02-28 16:39:11
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for bittareas
+-- ----------------------------
+DROP TABLE IF EXISTS `bittareas`;
+CREATE TABLE `bittareas` (
+  `eCodTarea` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `tNombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tCodEstatus` char(2) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `eCodUsuario` int(11) DEFAULT NULL,
+  `fhFechaCreacion` timestamp NOT NULL,
+  `tmHora` time NOT NULL,
+  `fhFechaFinalizacion` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`eCodTarea`),
+  KEY `bittareas_tcodestatus_foreign` (`tCodEstatus`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ----------------------------
+-- Records of bittareas
+-- ----------------------------
+INSERT INTO `bittareas` VALUES ('1', 'Catálogos', 'TE', '5', '2018-02-28 17:43:01', '00:00:00', '2018-02-28 15:50:55');
+INSERT INTO `bittareas` VALUES ('2', 'Diseño de plantilla', 'EP', '1', '2018-02-28 17:50:48', '00:00:00', null);
+INSERT INTO `bittareas` VALUES ('3', 'Plantilla', 'TE', '4', '2018-02-28 13:45:13', '02:25:15', '2018-02-28 16:10:28');
+INSERT INTO `bittareas` VALUES ('4', 'Nuevo', 'PE', null, '2018-02-28 13:48:04', '00:00:00', null);
+
+-- ----------------------------
+-- Table structure for sisestatus
+-- ----------------------------
+DROP TABLE IF EXISTS `sisestatus`;
+CREATE TABLE `sisestatus` (
+  `tCodEstatus` char(2) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tNombre` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tClase` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`tCodEstatus`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ----------------------------
+-- Records of sisestatus
+-- ----------------------------
+INSERT INTO `sisestatus` VALUES ('EP', 'En Proceso', 'fa fa-cog');
+INSERT INTO `sisestatus` VALUES ('PE', 'Pendiente', 'fa fa-pencil-alt');
+INSERT INTO `sisestatus` VALUES ('TE', 'Terminado', 'fa fa-check');
+
+-- ----------------------------
+-- Table structure for sisusuarios
+-- ----------------------------
+DROP TABLE IF EXISTS `sisusuarios`;
+CREATE TABLE `sisusuarios` (
+  `eCodUsuario` int(11) NOT NULL AUTO_INCREMENT,
+  `tNombre` varchar(100) COLLATE latin1_general_ci NOT NULL,
+  `tApellidos` varchar(150) COLLATE latin1_general_ci DEFAULT NULL,
+  `tCodEstatus` char(2) COLLATE latin1_general_ci NOT NULL,
+  `tCorreo` varchar(100) COLLATE latin1_general_ci NOT NULL,
+  `tPassword` varchar(50) COLLATE latin1_general_ci NOT NULL,
+  `fhFecha` datetime DEFAULT NULL,
+  PRIMARY KEY (`eCodUsuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- ----------------------------
+-- Records of sisusuarios
+-- ----------------------------
+INSERT INTO `sisusuarios` VALUES ('1', 'Javier', 'Rodriguez', 'AC', 'javier@mail.com', '123123', '2018-02-28 13:00:44');
+INSERT INTO `sisusuarios` VALUES ('2', 'Penelope', 'Gutierrez', 'AC', 'penelope@mail.com', '123123', '2018-02-28 13:03:41');
+INSERT INTO `sisusuarios` VALUES ('3', 'Pedro', null, 'AC', 'pedro@mail.com', '123123', '2018-02-28 13:04:51');
+INSERT INTO `sisusuarios` VALUES ('4', 'Alan', 'Carrillo', 'AC', 'alan@mail.com', '123123', '2018-02-28 13:06:30');
+INSERT INTO `sisusuarios` VALUES ('5', 'Luis', 'Rodriguez', 'AC', 'luis@mail.com', '123123', '2018-02-28 13:10:10');
